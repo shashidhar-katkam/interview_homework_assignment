@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "interview_homework",
+    "description": "GraphQL Yoga API for interview_homework. Server: http://localhost:4000/graphql (run `npm run dev`).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "5f2f2c2a-1a9a-4a6a-9a0a-interview-homework"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000/graphql",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Address",
+      "item": [
+        {
+          "name": "Get Address - Success (jack)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetAddress($username: String!) {\n  address(username: $username) {\n    street\n    city\n    zipcode\n  }\n}",
+                "variables": "{\n  \"username\": \"jack\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}",
+              "host": ["{{baseUrl}}"]
+            },
+            "description": "Fetches the address record for an existing user (jack)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Address - Success (jill)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetAddress($username: String!) {\n  address(username: $username) {\n    street\n    city\n    zipcode\n  }\n}",
+                "variables": "{\n  \"username\": \"jill\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}",
+              "host": ["{{baseUrl}}"]
+            },
+            "description": "Fetches the address record for an existing user (jill)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Address - Not Found",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query GetAddress($username: String!) {\n  address(username: $username) {\n    street\n    city\n    zipcode\n  }\n}",
+                "variables": "{\n  \"username\": \"nobody\"\n}"
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}",
+              "host": ["{{baseUrl}}"]
+            },
+            "description": "Requests a username with no matching record; expects a GraphQLError 'No address found in getAddress resolver'."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
