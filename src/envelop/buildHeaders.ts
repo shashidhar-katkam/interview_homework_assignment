@@ -4,7 +4,7 @@ import { ContextType } from '../types';
 
 export const buildHeaders = (): Plugin<ContextType> => {
   return {
-    onExecute({ extendContext }) {
+    onEnveloped({ extendContext }) {
       const requestId = uuid();
       extendContext({ requestId: requestId });
     },

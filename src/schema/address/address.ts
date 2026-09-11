@@ -20,27 +20,27 @@ const _getAddress = (username: string): Address | null => {
 };
 
 export const getAddress = (_: any, args: Args, context: any): Address => {
-  context.logger.info('getAddress', 'Enter resolver');
+  context.logger.info('getAddress: Enter resolver');
   const address = _getAddress(args.username);
   if (address) {
-    context.logger.info('getAddress', 'Returning address');
+    context.logger.info('getAddress: Returning address');
     return address;
   }
-  context.logger.error('getAddress', 'No address found');
+  context.logger.error('getAddress: No address found');
   throw new GraphQLError('No address found in getAddress resolver');
 };
 
 export const addAddress = (_: any, args: AddAddressArgs, context: any): Address => {
-  context.logger.info('addAddress', 'Enter resolver');
+  context.logger.info('addAddress: Enter resolver');
   const addresses = readAddresses();
 
   if (addresses[args.username]) {
-    context.logger.error('addAddress', 'Address already exists for username');
+    context.logger.error('addAddress: Address already exists for username');
     throw new GraphQLError(`Address already exists for username: ${args.username}`);
   }
 
   addresses[args.username] = args.address;
   writeAddresses(addresses);
-  context.logger.info('addAddress', 'Address created');
+  context.logger.info('addAddress: Address created');
   return addresses[args.username];
 };
