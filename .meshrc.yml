@@ -1,0 +1,15 @@
+sources:
+  - name: NasaNeoFeed
+    handler:
+      jsonSchema:
+        endpoint: https://api.nasa.gov/neo/rest/v1
+        operations:
+          - type: Query
+            field: neoFeed
+            description: NASA NEO feed API.
+            path: /feed?start_date={args.startDate}&end_date={args.endDate}&api_key=DEMO_KEY
+            method: GET
+            responseSchema: ./mesh/schemas/neo-feed.response.json
+            requiredArgs:
+              - startDate
+              - endDate

@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NeoFeedResponse",
+  "description": "NASA NEO feed API",
+  "type": "object",
+  "properties": {
+    "element_count": {
+      "type": "integer"
+    },
+    "near_earth_objects": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
